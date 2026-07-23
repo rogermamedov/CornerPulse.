@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Williamsburg MMA Performance Monitor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <section class="session-identity" aria-label="Session">
+          <p class="eyebrow">Live sparring monitor</p>
+          <h1>Williamsburg MMA</h1>
+          <div class="session-meta">
+            <span>Advanced striking</span>
+            <span>10 athletes</span>
+            <span id="connectionSummary">9 connected</span>
+          </div>
+        </section>
+
+        <section class="timer-panel" aria-label="Round timer">
+          <div>
+            <p class="eyebrow">Round 3 of 6</p>
+            <div class="timer" id="roundTimer">02:14</div>
+          </div>
+          <div class="timer-controls">
+            <button class="icon-button" id="playPause" aria-label="Pause timer" title="Pause timer">II</button>
+            <button class="icon-button" id="markRound" aria-label="Mark round" title="Mark round">+</button>
+            <button class="icon-button" id="resetTimer" aria-label="Reset timer" title="Reset timer">R</button>
+          </div>
+        </section>
+
+        <section class="coach-actions" aria-label="Coach controls">
+          <label class="search-box">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="Athlete name" />
+          </label>
+          <div class="segmented-control" aria-label="View mode">
+            <button class="active" data-view="tiles">Tiles</button>
+            <button data-view="table">Table</button>
+          </div>
+        </section>
+      </header>
+
+      <section class="summary-strip" aria-label="Session summary">
+        <article>
+          <span class="summary-value" id="redCount">2</span>
+          <span class="summary-label">red workload</span>
+        </article>
+        <article>
+          <span class="summary-value" id="avgHr">158</span>
+          <span class="summary-label">avg live BPM</span>
+        </article>
+        <article>
+          <span class="summary-value" id="slowRecovery">3</span>
+          <span class="summary-label">slow recovery</span>
+        </article>
+        <article>
+          <span class="summary-value" id="alertsCount">4</span>
+          <span class="summary-label">coach alerts</span>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <aside class="side-panel" aria-label="Session tools">
+          <section class="tool-group">
+            <div class="section-heading">
+              <p class="eyebrow">Intensity zones</p>
+              <h2>Team distribution</h2>
+            </div>
+            <div class="zone-bars" id="zoneBars"></div>
+          </section>
+
+          <section class="tool-group">
+            <div class="section-heading">
+              <p class="eyebrow">Coach alerts</p>
+              <h2>Needs attention</h2>
+            </div>
+            <div class="alert-list" id="alertList"></div>
+          </section>
+
+          <section class="tool-group">
+            <div class="section-heading">
+              <p class="eyebrow">Privacy</p>
+              <h2>Consent controls</h2>
+            </div>
+            <div class="consent-row">
+              <span>Health data sharing</span>
+              <strong>10 agreed</strong>
+            </div>
+            <div class="consent-row">
+              <span>Can stop sharing</span>
+              <strong>Any time</strong>
+            </div>
+            <div class="consent-row">
+              <span>Positioning</span>
+              <strong>Performance only</strong>
+            </div>
+          </section>
+        </aside>
+
+        <section class="dashboard-area">
+          <div class="toolbar">
+            <div class="section-heading">
+              <p class="eyebrow">Live sensor feed</p>
+              <h2>All athletes</h2>
+            </div>
+            <div class="filter-pills" aria-label="Status filters">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="red">Red</button>
+              <button data-filter="orange">Orange</button>
+              <button data-filter="disconnected">Offline</button>
+            </div>
+          </div>
+
+          <div class="athlete-grid" id="athleteGrid" aria-live="polite"></div>
+
+          <div class="table-wrap hidden" id="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Athlete</th>
+                  <th>Heart rate</th>
+                  <th>Max HR %</th>
+                  <th>Zone</th>
+                  <th>Round load</th>
+                  <th>Recovery</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="athleteTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="detail-band" aria-label="Round by round details">
+        <article class="round-report">
+          <div class="section-heading">
+            <p class="eyebrow">Round capture</p>
+            <h2>Automatic end-of-round report</h2>
+          </div>
+          <div class="metrics-row">
+            <div>
+              <span>Peak HR</span>
+              <strong id="peakHr">188 BPM</strong>
+            </div>
+            <div>
+              <span>Avg HR</span>
+              <strong id="roundAvg">162 BPM</strong>
+            </div>
+            <div>
+              <span>30 sec drop</span>
+              <strong id="drop30">18 BPM</strong>
+            </div>
+            <div>
+              <span>60 sec drop</span>
+              <strong id="drop60">29 BPM</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="notes-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Private note</p>
+            <h2>Coach observation</h2>
+          </div>
+          <textarea id="coachNote" rows="4">Alex is technically sharp but trending above his usual round-three load. Give a lighter partner next round.</textarea>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
