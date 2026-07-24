@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build": "mkdir -p build && cp index.html styles.css script.js build/"
+  }
+}
