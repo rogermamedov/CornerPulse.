@@ -1,0 +1,5 @@
+Render service: srv-d9gpq13eo5us73cj94s0
+Expected URL: https://pulseroster.onrender.com
+Expected static publish path: build
+Build command: npm run build
+Updated: 2026-07-24
